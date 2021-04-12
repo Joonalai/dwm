@@ -37,7 +37,7 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        0  },
 	{ "firefox",  NULL,       NULL,       0,            0,           -1,       'f' },
 	{ NULL,       NULL,   "scratchpad",   0,            1,           -1,       't' },
-	{ "Slack",    NULL,       NULL,       0,            0,           -1,       's' },
+	{ "Rambox",   NULL,       NULL,       0,            1,           -1,       'r' },
 };
 
 /* layout(s) */
@@ -74,7 +74,7 @@ static const char *termcmd[]  = { "alacritty", NULL };
 
 /*First arg only serves to match against key in rules*/
 static const char *scratchpadcmd[] = {"t", "alacritty", "-t", "scratchpad", NULL};
-static const char *slscratchpadcmd[] = {"s", "slack", NULL};
+static const char *rbscratchpadcmd[] = {"r", "rambox", NULL};
 static const char *ffscratchpadcmd[] = {"f", "firefox", NULL};
 
 static Key keys[] = {
@@ -84,7 +84,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_g,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_g,      removescratch,  {.v = scratchpadcmd } },
 	{ MODKEY|ControlMask,           XK_g,      setscratch,     {.v = scratchpadcmd } },
-	{ MODKEY,                       XK_s,      togglescratch,  {.v = slscratchpadcmd } },
+	{ MODKEY,                       XK_r,      togglescratch,  {.v = rbscratchpadcmd } },
 	{ MODKEY,                       XK_f,      togglescratch,  {.v = ffscratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_f,      removescratch,  {.v = ffscratchpadcmd } },
 	{ MODKEY|ControlMask,           XK_f,      setscratch,     {.v = ffscratchpadcmd } },
