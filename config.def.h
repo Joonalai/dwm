@@ -72,17 +72,6 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *roficmd[] = { "rofi", "-show", "combi", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 
-/* Hardware multimedia keys from https://gist.github.com/palopezv/efd34059af6126ad970940bcc6a90f2e */
-static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
-
-/* Brightness keys. Requires package light and "usermod -aG video `whoami`" on Ubuntu */
-static const char *light_up[] = {"/usr/bin/light", "-A", "5", NULL};
-static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL};
-
-
-
 /*First arg only serves to match against key in rules*/
 static const char *scratchpadcmd[] = {"t", "alacritty", "-t", "scratchpad", NULL};
 static const char *slscratchpadcmd[] = {"s", "slack", NULL};
@@ -127,11 +116,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -5 } },
     { MODKEY,                       XK_plus,   setgaps,        {.i = +5 } },
     { MODKEY|ShiftMask,             XK_plus,   setgaps,        {.i = 0  } },
-	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = downvol} },
-    { 0,                            XF86XK_AudioMute, spawn, {.v = mutevol} },
-    { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = upvol} },
-    { 0,			                XF86XK_MonBrightnessUp,  spawn, {.v = light_up} },
-    { 0,			                XF86XK_MonBrightnessDown,spawn,	{.v = light_down} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
