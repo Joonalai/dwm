@@ -35,9 +35,9 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor    scratch key */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        0  },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1,        0  },
+	{ "Firefox",  NULL,       NULL,       0,            0,           -1,       'f' },
 	{ NULL,       NULL,   "scratchpad",   0,            1,           -1,       't' },
-	{ NULL,       NULL,       "slack",    0,            1,           -1,       's' },
+	{ "Slack",    NULL,       NULL,       0,            0,           -1,       's' },
 };
 
 /* layout(s) */
@@ -86,6 +86,7 @@ static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL};
 /*First arg only serves to match against key in rules*/
 static const char *scratchpadcmd[] = {"t", "alacritty", "-t", "scratchpad", NULL};
 static const char *slscratchpadcmd[] = {"s", "slack", NULL};
+static const char *ffscratchpadcmd[] = {"f", "firefox", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -94,7 +95,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_g,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_g,      removescratch,  {.v = scratchpadcmd } },
 	{ MODKEY|ControlMask,           XK_g,      setscratch,     {.v = scratchpadcmd } },
-	 { MODKEY,                      XK_s,      togglescratch,  {.v = slscratchpadcmd } },
+	{ MODKEY,                       XK_s,      togglescratch,  {.v = slscratchpadcmd } },
+	{ MODKEY,                       XK_f,      togglescratch,  {.v = ffscratchpadcmd } },
+	{ MODKEY|ShiftMask,             XK_f,      removescratch,  {.v = ffscratchpadcmd } },
+	{ MODKEY|ControlMask,           XK_f,      setscratch,     {.v = ffscratchpadcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -106,7 +110,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ControlMask|ShiftMask, XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[4]} },
